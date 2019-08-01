@@ -24,7 +24,7 @@ class ColorfulTags_Plugin implements Typecho_Plugin_Interface
     public static function config(Typecho_Widget_Helper_Form $form)
     {
       $tagDiv = new Typecho_Widget_Helper_Form_Element_Text(
-        'tagDiv', NULL, 'tag_cloud-2',
+        'tagDiv', NULL, 'colorfultags',
         _t('标签云容器定位：'),
         _t('这里写上标签云容器的ID，如果没有ID请自行添加')
       );
