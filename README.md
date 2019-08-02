@@ -1,7 +1,7 @@
 # Typecho-ColorfulTags
 彩色3D标签云插件，原生JS实现。
 
-![效果图](https://blog.irow.top/usr/uploads/2019/08/21217110.png)
+![效果图](https://blog.irow.top/usr/uploads/2019/08/154750410.png)
 
 ## 食用方法
 
