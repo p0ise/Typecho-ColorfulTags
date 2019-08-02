@@ -5,7 +5,7 @@
  *
  * @package ColorfulTags
  * @author 承影
- * @version 0.8
+ * @version 0.9
  * @link https://blog.irow.top/
  */
 
@@ -80,16 +80,16 @@ class ColorfulTags_Plugin implements Typecho_Plugin_Interface
       $css = <<<css
       <style>
       {$tagDiv}{position:relative;width:240px;height:240px;border: 2px black;}
-      {$tagDiv} a{position:absolute;color:#fff;text-align:center;text-overflow:ellipsis;white-space:nowrap;top:0;left:0;padding:3px 5px;border:0}
+      {$tagDiv} a{position:absolute;color:#fff;text-align:center;text-overflow:ellipsis;white-space:nowrap;top:0;left:0;padding:3px 5px;border:0;border-radius:3px;display:inline-block;line-height:18px;margin:0 10px 15px 0}
       {$tagDiv} a:hover{background:#d02f53;display:block}
-      {$tagDiv} a:nth-child(n){background:#f60;border-radius:3px;display:inline-block;line-height:18px;margin:0 10px 15px 0}
-      {$tagDiv} a:nth-child(2n){background: #45B6F7;}
-      {$tagDiv} a:nth-child(3n){background: #15a287;}
-      {$tagDiv} a:nth-child(4n){background: #5cb85c;}
-      {$tagDiv} a:nth-child(5n){background: #d9534f;}
-      {$tagDiv} a:nth-child(6n){background: #567e95;}
-      {$tagDiv} a:nth-child(7n){background: #00a67c;}
-      {$tagDiv} a:nth-child(8n){background: #b37333;}
+      {$tagDiv} a:nth-child(8n){background: #f60;}
+      {$tagDiv} a:nth-child(8n+1){background: #45B6F7;}
+      {$tagDiv} a:nth-child(8n+2){background: #15a287;}
+      {$tagDiv} a:nth-child(8n+3){background: #5cb85c;}
+      {$tagDiv} a:nth-child(8n+4){background: #d9534f;}
+      {$tagDiv} a:nth-child(8n+5){background: #567e95;}
+      {$tagDiv} a:nth-child(8n+6){background: #00a67c;}
+      {$tagDiv} a:nth-child(8n+7){background: #b37333;}
       </style>
 css;
 
