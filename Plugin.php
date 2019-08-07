@@ -5,7 +5,7 @@
  *
  * @package ColorfulTags
  * @author 承影
- * @version 0.9
+ * @version 0.9.3
  * @link https://blog.irow.top/
  */
 
