@@ -5,7 +5,7 @@
  *
  * @package ColorfulTags
  * @author 承影
- * @version 0.9.3
+ * @version 1.0
  * @link https://blog.irow.top/
  */
 
@@ -61,14 +61,14 @@ class ColorfulTags_Plugin implements Typecho_Plugin_Interface
       $radius = $options->plugin('ColorfulTags')->radius;
       $speed = $options->plugin('ColorfulTags')->speed;
       $pjax = $options->plugin('ColorfulTags')->pjax;
-      $src = $options->pluginUrl.'/ColorfulTags/js/3dtags.min.js';
+      $src = $options->pluginUrl.'/ColorfulTags/js/colorfultags.min.js';
 
       /*输出彩色标签云*/
       echo "<script src='$src'></script>";
 
       $script = '<script>';
       if($pjax){
-        $script .= 'window.onload = function(){console.info("%c彩色标签云-承影|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;");};$(document).on("ready pjax:end", function() {colorfultags'."('$tagDiv',$radius,200,Math.PI / 180,1,1,true,$speed,200,0,10,1);});";
+        $script .= 'window.onload = function(){console.info("%c彩色标签云-承影|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;");};$(document).on("ready pjax:end", '."function() {colorfultags('$tagDiv',$radius,200,Math.PI / 180,1,1,true,$speed,200,0,10,1);});";
       }else{
         $script .= "window.onload = function(){
           colorfultags('$tagDiv',$radius,200,Math.PI / 180,1,1,true,$speed,200,0,10,1);
