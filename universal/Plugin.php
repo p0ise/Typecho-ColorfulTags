@@ -4,8 +4,8 @@
  * <a href='https://blog.irow.top/archives/396.html' title='mainpage' target='_blank'>彩色3D标签云插件</a>
  *
  * @package ColorfulTags
- * @author 承影
- * @version 1.0
+ * @author 锋临
+ * @version 1.1
  * @link https://blog.irow.top/
  */
 
@@ -42,9 +42,9 @@ class ColorfulTags_Plugin implements Typecho_Plugin_Interface
       );
       $form->addInput($speed);
 
-      $jquery = new Typecho_Widget_Helper_Form_Element_Radio('jquery',
-          ['0' => _t('不加载'), '1' => _t('加载')],
-          '1', _t('是否加载外部jQuery库'), _t('插件需要jQuery库文件的支持，如果已加载就不需要加载了 jquery源是新浪Public Resources on SAE：https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js'));
+      //$jquery = new Typecho_Widget_Helper_Form_Element_Radio('jquery',
+      //    ['0' => _t('不加载'), '1' => _t('加载')],
+      //    '1', _t('是否加载外部jQuery库'), _t('插件需要jQuery库文件的支持，如果已加载就不需要加载了 jquery源是新浪Public Resources on SAE：https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js'));
       $pjax = new Typecho_Widget_Helper_Form_Element_Radio('pjax', ['0' => _t('否'), '1' => _t('是')], '0', _t('是否启用了PJAX'), _t('如果你启用了pjax,当切换页面时候，js不会重写绑定事件到新生成的节点上。
 你可以在该项设置中重新加载js函数，以便将事件正确绑定ajax生成的DOM节点上'));
       $form->addInput($pjax);
