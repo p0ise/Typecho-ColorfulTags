@@ -4,7 +4,7 @@
  *
  * @package ColorfulTags
  * @author 锋临
- * @version 1.3
+ * @version 1.4
  * @link https://blog.irow.top/
  */
 class ColorfulTags_Plugin implements Typecho_Plugin_Interface {
@@ -39,68 +39,76 @@ class ColorfulTags_Plugin implements Typecho_Plugin_Interface {
 	public static function personalConfig(Typecho_Widget_Helper_Form $form) {
 	}
 	/* 插件实现方法 */
-	public static function render() {
+	public static function render($archive) {
 		/*获取参数*/
 		$options = Helper::options();
 		$is3d = $options->plugin('ColorfulTags')->is3d;
 		$radius = $options->plugin('ColorfulTags')->radius;
 		$speed = $options->plugin('ColorfulTags')->speed;
 		$pjax = $options->plugin('ColorfulTags')->pjax;
+		$ispost = $archive->parameter->type=='post';
 		$static_src = $options->pluginUrl.'/ColorfulTags/static';
-		if($pjax&&$is3d) {
-			$html = <<<html
-			<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
-			<link rel="stylesheet" type="text/css" href="{$static_src}/css/around3d.min.css">
-			<script src="{$static_src}/js/colorfultags.min.js"></script>
-			<script src="{$static_src}/js/around3d.min.js"></script>
-			<script>
-			$(function(){
-				console.info("%c彩色标签云-承影|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
-				$(document).on("ready pjax:end", function() {
-					colorfultags("#tag_cloud-2 > div > a");
-					around3D("#tag_cloud-2>div",{$radius}, 200, Math.PI / 180, 1, 1, true, {$speed}, 200, 0, 10, 1);
-				});
-			});
-			</script>
+		
+		if($pjax) {
+			if($ispost||!$is3d){
+				$html = <<<html
+							<!-- Start ColorfulTags -->
+							<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
+							<script src="{$static_src}/js/colorfultags.min.js"></script>
+							<script id="colorfultags">
+							console.info("%c彩色标签云-锋临|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
+							colorfultags("#tag_cloud-2 > div > a");
+							$($(document).one("pjax:clicked", function() {
+								$.pjax.reload('#colorfultags')
+							}));
+							</script>
+							<!-- End ColorfulTags -->
 html;
-		} else if($pjax) {
-			$html = <<<html
-			<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
-			<script src="{$static_src}/js/colorfultags.min.js"></script>
-			<script>
-			$(function(){
-				console.info("%c彩色标签云-承影|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
-				$(document).on("ready pjax:end", function() {
-					colorfultags("#tag_cloud-2 > div > a");
-				});
-			});
-			</script>
+			} else{
+				$html = <<<html
+							<!-- Start ColorfulTags -->
+							<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
+							<link rel="stylesheet" type="text/css" href="{$static_src}/css/around3d.min.css">
+							<script src="{$static_src}/js/colorfultags.min.js"></script>
+							<script src="{$static_src}/js/around3d.min.js"></script>
+							<script id="#colorfultags">
+							console.info("%c彩色标签云-锋临|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
+							colorfultags("#tag_cloud-2 > div > a");
+							around3D("#tag_cloud-2>div",{$radius}, 200, Math.PI / 180, 1, 1, true, {$speed}, 200, 0, 10, 1);
+							$($(document).one("pjax:clicked", function() {
+								$.pjax.reload('#colorfultags')
+							}));
+							</script>
+							<!-- End ColorfulTags -->
 html;
-		} else if($is3d) {
-			$html = <<<html
-			<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
-			<link rel="stylesheet" type="text/css" href="{$static_src}/css/around3d.min.css">
-			<script src="{$static_src}/js/colorfultags.min.js"></script>
-			<script src="{$static_src}/js/around3d.min.js"></script>
-			<script>
-			$(function(){
-				console.info("%c彩色标签云-承影|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
-				colorfultags("#tag_cloud-2 > div > a");
-				around3D("#tag_cloud-2>div",{$radius}, 200, Math.PI / 180, 1, 1, true, {$speed}, 200, 0, 10, 1);
-			});
-			</script>
+			}
+		} else{
+			if($ispost||!$is3d){
+				$html = <<<html
+							<!-- Start ColorfulTags -->
+							<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
+							<script src="{$static_src}/js/colorfultags.min.js"></script>
+							<script>
+							console.info("%c彩色标签云-锋临|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
+							colorfultags("#tag_cloud-2 > div > a");
+							</script>
+							<!-- End ColorfulTags -->
 html;
-		} else {
-			$html = <<<html
-			<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
-			<script src="{$static_src}/js/colorfultags.min.js"></script>
-			<script>
-			$(function(){
-				console.info("%c彩色标签云-承影|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
-				colorfultags("#tag_cloud-2 > div > a");
-			});
-			</script>
+			} else{
+				$html = <<<html
+							<!-- Start ColorfulTags -->
+							<link rel="stylesheet" type="text/css" href="{$static_src}/css/colorfultags.min.css">
+							<link rel="stylesheet" type="text/css" href="{$static_src}/css/around3d.min.css">
+							<script src="{$static_src}/js/colorfultags.min.js"></script>
+							<script src="{$static_src}/js/around3d.min.js"></script>
+							<script>
+							console.info("%c彩色标签云-锋临|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
+							colorfultags("#tag_cloud-2 > div > a");
+							around3D("#tag_cloud-2>div",{$radius}, 200, Math.PI / 180, 1, 1, true, {$speed}, 200, 0, 10, 1);
+							</script>
+							<!-- End ColorfulTags -->
 html;
+			}
 		}
 		echo $html;
 	}
