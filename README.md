@@ -14,7 +14,7 @@
 
 Github地址：<https://github.com/invelop/Typecho-ColorfulTags>
 
-码云地址：<https://gitee.com/ETAS/Typecho-ColorfulTags>
+码云地址：<https://gitee.com/invelop/Typecho-ColorfulTags>
 
 项目主页：<https://blog.irow.top/archives/396.html>
 
