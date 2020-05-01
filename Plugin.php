@@ -4,8 +4,8 @@
  *
  * @package ColorfulTags
  * @author 锋临
- * @version 1.5
- * @link https://blog.irow.top/
+ * @version 1.6
+ * @link https://www.invelop.cn/
  */
 class ColorfulTags_Plugin implements Typecho_Plugin_Interface {
 	/* 激活插件方法 */
@@ -110,8 +110,8 @@ css;
  							<script id="colorfultags">
  							console.info("%c彩色标签云-锋临|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
  							colorfultags("{$css_selector}");
- 							$($(document).one("pjax:clicked", function() {
- 								$.pjax.reload('#colorfultags')
+ 							$($(document).on("pjax:complete", function() {
+ 								colorfultags("{$css_selector}")
  							}));
  							</script>
  							<!-- End ColorfulTags -->
@@ -126,8 +126,9 @@ html;
  							console.info("%c彩色标签云-锋临|BLOG.IROW.TOP","line-height:28px;padding:4px;background:#3f51b5;color:#fff;font-size:14px;font-family:Microsoft YaHei;");
  							colorfultags("{$css_selector}");
  							around3D("{$css_selector}",{$radius}, 200, Math.PI / 180, 1, 1, true, {$speed}, 200, 0, 10, 1);
- 							$($(document).one("pjax:clicked", function() {
- 								$.pjax.reload('#colorfultags')
+ 							$($(document).on("pjax:complete", function() {
+ 								colorfultags("{$css_selector}");
+ 								around3D("{$css_selector}",{$radius}, 200, Math.PI / 180, 1, 1, true, {$speed}, 200, 0, 10, 1)
  							}));
  							</script>
  							<!-- End ColorfulTags -->
